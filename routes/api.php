@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\BrandController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/categories/{category}/products', [CategoryController::class, 'products']);
 
     Route::apiResource('products', ProductController::class);
+
+    Route::post('/orders', [OrderController::class, 'store']);
+    Route::post('/payment/verify', [OrderController::class, 'verify']);
 });

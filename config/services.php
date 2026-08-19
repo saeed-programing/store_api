@@ -33,6 +33,10 @@ return [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
-    ]
+    ],
 
+    'zibal_payment' => [
+        'merchant' => env('MERCHANT_ZIBAL_PAYMENT'),
+        'callback_url' => env('CALLBACK_URL_ZIBAL_PAYMENT'),
+    ]
 ];
