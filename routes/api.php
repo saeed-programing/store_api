@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BrandController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\OrderController;
@@ -11,7 +12,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1/auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+});
+Route::prefix('v1')->middleware(['auth:sanctum'])->group(function () {
+    Route::post('logout', [AuthController::class, 'logout']);
+
     Route::apiResource('brands', BrandController::class);
     Route::get('/brands/{brand}/products', [BrandController::class, 'products']);
 
